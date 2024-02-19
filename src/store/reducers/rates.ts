@@ -2,7 +2,10 @@ import { createAsyncThunk, createSlice, PayloadAction } from '@reduxjs/toolkit';
 import $api from '../../api';
 
 export interface RatesState {
-  ratesList: Array<RatesListItem> | Array<RatesListItem>[]
+  ratesList: RatesListItem[],
+  selectedRatesData: RatesListItem[],
+  rateTypes: string[],
+  selectedRateType: '$' | '€' | '¥';
 }
 
 export type RatesListItem = {
@@ -13,36 +16,59 @@ export type RatesListItem = {
 };
 
 const initialState: RatesState = {
-  ratesList: []
+  ratesList: [],
+  selectedRatesData: [],
+  rateTypes: ['$', '€', '¥'],
+  selectedRateType: '$'
 };
 
 export const getRatesThunk = createAsyncThunk(
-  'Get Rates',
+  'rates/getRates',
   async () => {
     try {
-      const response = await $api.get<Array<RatesListItem> | Array<RatesListItem>[]>(`/rates`);
+      const response = await $api.get<RatesListItem[]>(`/rates`);
       console.log(response.data);
       return response.data;
-    } catch (err: any) {
+    } catch (err) {
       throw err;
     }
   }
 );
 
-export const RatesSlice = createSlice({
-  name: "Rates",
+export const ratesSlice = createSlice({
+  name: "rates",
   initialState,
   reducers: {
+    changeSelectedRate: (state, action: PayloadAction<'$' | '€' | '¥'>) => {
+      state.selectedRateType = action.payload;
 
+      let indicator = '';
+
+      switch(action.payload) {
+        case '$':
+          indicator = 'Курс доллара';
+          break;
+        case '€':
+          indicator = 'Курс евро';
+          break;
+        case '¥':
+          indicator = 'Курс юаня';
+          break;
+        default:
+          indicator = 'Курс доллара';
+      }
+
+      state.selectedRatesData = state.ratesList.filter((rate) => rate.indicator === indicator);
+    }
   },
   extraReducers: (builder) => {
     builder
-      .addCase(getRatesThunk.fulfilled, (state, action: PayloadAction<Array<RatesListItem> | Array<RatesListItem>[]>) => {
+      .addCase(getRatesThunk.fulfilled, (state, action: PayloadAction<RatesListItem[]>) => {
         state.ratesList = action.payload;
       });
   }
 });
 
-export default RatesSlice.reducer;
+export default ratesSlice.reducer;
 
-export const {} = RatesSlice.actions;
+export const { changeSelectedRate } = ratesSlice.actions;
