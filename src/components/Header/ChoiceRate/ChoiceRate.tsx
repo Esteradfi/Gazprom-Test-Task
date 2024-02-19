@@ -1,7 +1,7 @@
 import { ChoiceGroup, ChoiceGroupProps } from '@consta/uikit/ChoiceGroup';
 import { FC } from 'react';
-import { useAppDispatch, useAppSelector } from '../../store/store';
-import { changeSelectedRate } from '../../store/reducers/rates';
+import { useAppDispatch, useAppSelector } from '../../../store/store';
+import { changeSelectedRate } from '../../../store/reducers/rates';
 
 const ChoiceRate: FC = () => {
   const dispatch = useAppDispatch();

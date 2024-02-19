@@ -1,6 +1,6 @@
 import { Text } from '@consta/uikit/Text';
 import React, { FC } from 'react';
-import ChoiceRate from '../ChoiceRate/ChoiceRate';
+import ChoiceRate from './ChoiceRate/ChoiceRate';
 import styles from "./Header.module.css";
 import { useAppSelector } from '../../store/store';
 

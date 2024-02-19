@@ -6,6 +6,7 @@ export interface RatesState {
   selectedRatesData: RatesListItem[],
   rateTypes: string[],
   selectedRateType: '$' | '€' | '¥';
+  average: string, // Выбран тип "строка", т.к. по макету, требуется отобразить нецелую часть числа после запятой, а не точки
 }
 
 export type RatesListItem = {
@@ -19,7 +20,8 @@ const initialState: RatesState = {
   ratesList: [],
   selectedRatesData: [],
   rateTypes: ['$', '€', '¥'],
-  selectedRateType: '$'
+  selectedRateType: '$',
+  average: '0',
 };
 
 export const getRatesThunk = createAsyncThunk(
@@ -59,16 +61,20 @@ export const ratesSlice = createSlice({
       }
 
       state.selectedRatesData = state.ratesList.filter((rate) => rate.indicator === indicator);
+    },
+    changeAverageValue: (state, action: PayloadAction<string>) => {
+      state.average = action.payload;
     }
   },
   extraReducers: (builder) => {
     builder
       .addCase(getRatesThunk.fulfilled, (state, action: PayloadAction<RatesListItem[]>) => {
         state.ratesList = action.payload;
+        state.selectedRatesData = state.ratesList.filter((rate) => rate.indicator === 'Курс доллара');
       });
   }
 });
 
 export default ratesSlice.reducer;
 
-export const { changeSelectedRate } = ratesSlice.actions;
+export const { changeSelectedRate, changeAverageValue } = ratesSlice.actions;

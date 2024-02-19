@@ -10,7 +10,7 @@
 
 - В файле [**package.json**](./package.json) указаны минимально-необходимые для работы библиотеки
 
-- В файле [**ReactECharts.ts**](./src/Echarts/ReactECharts.tsx) реализован компонент ReactECharts, который можно использовать для отрисовки элементов из библиотеки [**echarts.js**](https://echarts.apache.org/en/index.html)
+- В файле [**ReactECharts.ts**](src/components/Echarts/ReactECharts.tsx) реализован компонент ReactECharts, который можно использовать для отрисовки элементов из библиотеки [**echarts.js**](https://echarts.apache.org/en/index.html)
 
 Пример использования:
 
