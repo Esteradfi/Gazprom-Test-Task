@@ -8,6 +8,7 @@ const ChoiceRate: FC = () => {
   const items = useAppSelector<string[]>(state => state.rates.rateTypes);
   const value = useAppSelector<'$' | '€' | '¥'>(state => state.rates.selectedRateType);
 
+  //Изменение выбранной валюты
   const changeRateType = (newValue: '$' | '€' | '¥') => {
     dispatch(changeSelectedRate(newValue.value));
   }

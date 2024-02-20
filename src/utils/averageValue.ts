@@ -8,7 +8,8 @@ const calculateAverage = (arr: RatesListItem[]): string => {
   const sum = arr.reduce((total, obj) => total + obj.value, 0);
   const average = sum / arr.length;
 
-  return average.toFixed(1).replace('.', ','); // Функция возвращает среднее значение, приведённое к строке, т.к. по макету нужно отбразить запятую вместо точки
+// Функция возвращает среднее значение, приведённое к строке, т.к. по макету нужно отбразить запятую вместо точки
+  return average.toFixed(1).replace('.', ',');
 }
 
 export default calculateAverage;

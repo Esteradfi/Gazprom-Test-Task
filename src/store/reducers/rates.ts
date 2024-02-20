@@ -7,6 +7,7 @@ export interface RatesState {
   rateTypes: string[],
   selectedRateType: '$' | '€' | '¥';
   average: string, // Выбран тип "строка", т.к. по макету, требуется отобразить нецелую часть числа после запятой, а не точки
+  isFetching: boolean,
 }
 
 export type RatesListItem = {
@@ -22,14 +23,15 @@ const initialState: RatesState = {
   rateTypes: ['$', '€', '¥'],
   selectedRateType: '$',
   average: '0',
+  isFetching: false
 };
 
+//Получение данных с сервиса mockAPI
 export const getRatesThunk = createAsyncThunk(
   'rates/getRates',
   async () => {
     try {
       const response = await $api.get<RatesListItem[]>(`/rates`);
-      console.log(response.data);
       return response.data;
     } catch (err) {
       throw err;
@@ -61,9 +63,17 @@ export const ratesSlice = createSlice({
       }
 
       state.selectedRatesData = state.ratesList.filter((rate) => rate.indicator === indicator);
+      state.selectedRatesData.sort((a, b) => a.date.localeCompare(b.date));
+      /*
+      сортировка по дате (учитывая, что дата в формате yyyy-mm-dd, можно не преобразовывать строку
+      в дату, а сразу сортировать строку). Сделано на случай получения перемешанных данных
+      */
     },
     changeAverageValue: (state, action: PayloadAction<string>) => {
       state.average = action.payload;
+    },
+    changeIsFetching: (state, action: PayloadAction<boolean>) => {
+      state.isFetching = action.payload;
     }
   },
   extraReducers: (builder) => {
@@ -71,10 +81,12 @@ export const ratesSlice = createSlice({
       .addCase(getRatesThunk.fulfilled, (state, action: PayloadAction<RatesListItem[]>) => {
         state.ratesList = action.payload;
         state.selectedRatesData = state.ratesList.filter((rate) => rate.indicator === 'Курс доллара');
+        state.selectedRatesData.sort((a, b) => a.date.localeCompare(b.date));
+        state.isFetching = false;
       });
   }
 });
 
 export default ratesSlice.reducer;
 
-export const { changeSelectedRate, changeAverageValue } = ratesSlice.actions;
+export const { changeSelectedRate, changeAverageValue, changeIsFetching } = ratesSlice.actions;

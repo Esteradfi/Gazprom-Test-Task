@@ -9,6 +9,7 @@ const Header: FC = () => {
 
   let title: string = '';
 
+  //Меняем заголовок в зависимости от выбранной валюты
   switch(selectedRateType) {
     case '$':
       title = 'КУРС ДОЛЛАРА, $/₽';
