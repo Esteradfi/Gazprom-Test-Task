@@ -2,7 +2,7 @@
   "name": "gazprom-neft-test",
   "version": "0.1.0",
   "private": true,
-  "homepage": "https://github.com/Esteradfi/Gazprom-Test-Task.git",
+  "homepage": "https://esteradfi.github.io/gazprom-test-task/",
   "dependencies": {
     "@consta/icons": "^0.9.2",
     "@consta/uikit": "^4.30.0",

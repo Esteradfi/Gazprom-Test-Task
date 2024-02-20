@@ -4,3 +4,9 @@
     align-items: center;
     min-height: 200px;
 }
+
+@media screen and (max-width: 755px){
+    .section {
+        flex-direction: column;
+    }
+}

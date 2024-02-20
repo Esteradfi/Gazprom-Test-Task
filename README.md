@@ -1,5 +1,5 @@
 # Gazprom Test Task
-## Ссылка на [gh-pages](https://esteradfi.github.io/Gazprom-Test-Task/)
+## Ссылка на [gh-pages](https://esteradfi.github.io/gazprom-test-task/)
 При выполнении задания, помимо echarts.js и библиотеки компонентов Consta UI Kit использовались Redux ToolKit (для управлением состояния приложения), axios (для работы с API).
 
 - Данные [**внесены**](https://65d2cf4b987977636bfca91e.mockapi.io/api/rates) на сервис mockAPI и при первом рендере [**App.tsx**](./src/App.tsx) запрашиваются оттуда.

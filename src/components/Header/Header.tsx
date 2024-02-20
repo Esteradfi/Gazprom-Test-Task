@@ -26,7 +26,7 @@ const Header: FC = () => {
 
   return (
     <header className={styles.header}>
-      <Text weight={'bold'} size='xl'>
+      <Text className={styles.title} weight={'bold'} size='xl'>
         {title}
       </Text>
       <ChoiceRate />
