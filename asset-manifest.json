@@ -1,6 +1,6 @@
 {
   "files": {
-    "main.css": "/gazprom-test-task/static/css/main.d995ca67.css",
+    "main.css": "/gazprom-test-task/static/css/main.2f886cef.css",
     "main.js": "/gazprom-test-task/static/js/main.e1c0da8e.js",
     "static/media/Inter-Bold.woff": "/gazprom-test-task/static/media/Inter-Bold.8f8c5ea1d3a580b04e28.woff",
     "static/media/Inter-SemiBold.woff": "/gazprom-test-task/static/media/Inter-SemiBold.8709b7f1f6fabaaa7896.woff",
@@ -22,11 +22,11 @@
     "static/media/Inter-Regular.woff2": "/gazprom-test-task/static/media/Inter-Regular.91d1538224164e1fba3a.woff2",
     "static/media/preloader.svg": "/gazprom-test-task/static/media/preloader.d6bcb61a705cd14bb25feb01f1d2e0af.svg",
     "index.html": "/gazprom-test-task/index.html",
-    "main.d995ca67.css.map": "/gazprom-test-task/static/css/main.d995ca67.css.map",
+    "main.2f886cef.css.map": "/gazprom-test-task/static/css/main.2f886cef.css.map",
     "main.e1c0da8e.js.map": "/gazprom-test-task/static/js/main.e1c0da8e.js.map"
   },
   "entrypoints": [
-    "static/css/main.d995ca67.css",
+    "static/css/main.2f886cef.css",
     "static/js/main.e1c0da8e.js"
   ]
 }
