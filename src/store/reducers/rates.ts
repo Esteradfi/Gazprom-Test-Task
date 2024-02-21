@@ -4,8 +4,8 @@ import $api from '../../api';
 export interface RatesState {
   ratesList: RatesListItem[],
   selectedRatesData: RatesListItem[],
-  rateTypes: string[],
-  selectedRateType: '$' | '€' | '¥';
+  rateTypes: RateType[],
+  selectedRateType: RateType;
   average: string, // Выбран тип "строка", т.к. по макету, требуется отобразить нецелую часть числа после запятой, а не точки
   isFetching: boolean,
 }
@@ -16,6 +16,8 @@ export type RatesListItem = {
   indicator: string,
   value: number,
 };
+
+export type RateType = '$' | '€' | '¥';
 
 const initialState: RatesState = {
   ratesList: [],
@@ -43,7 +45,7 @@ export const ratesSlice = createSlice({
   name: "rates",
   initialState,
   reducers: {
-    changeSelectedRate: (state, action: PayloadAction<'$' | '€' | '¥'>) => {
+    changeSelectedRate: (state, action: PayloadAction<RateType>) => {
       state.selectedRateType = action.payload;
 
       let indicator = '';
